@@ -23,9 +23,8 @@ public class WorkplacePensionReportGenerator implements PensionReportGenerator {
         }
         int total = personList.size();
         long invalid = personList.stream().filter(p -> !p.isValid()).count();
-        StringBuilder sbHeader = new StringBuilder("Generating Workplace Pension Report for " + total + " subjects...\n");
-        sbHeader.append("Immediately discounting " + invalid + " invalid subjects");
-        logger.info(sbHeader.toString());
+        logger.info("Generating Workplace Pension Report for " + total + " subjects...\n"
+                + "Immediately discounting " + invalid + " invalid subjects");
 
         PensionForecaster basicForecaster = PensionForecasterFactory.createForecaster(PensionForecasterFactory.BASIC);
         PensionForecaster inflation3 = PensionForecasterFactory.createForecaster(PensionForecasterFactory.INFLATION_3);
@@ -40,9 +39,9 @@ public class WorkplacePensionReportGenerator implements PensionReportGenerator {
             String fullPersonDesc = person.getForename() + " " + person.getSurname()
                     + " (" + person.getNationalInsuranceNumber() + ") - ";
             sbPerson.append(fullPersonDesc);
-            sbPerson.append("Basic: " + basicForecaster.forecastPension(person));
-            sbPerson.append(" 3% Inflation: " + inflation3.forecastPension(person));
-            sbPerson.append(" 5% Inflation: " + inflation5.forecastPension(person));
+            sbPerson.append("Basic: ").append(basicForecaster.validateForecastPension(person));
+            sbPerson.append(" 3% Inflation: ").append(inflation3.validateForecastPension(person));
+            sbPerson.append(" 5% Inflation: ").append(inflation5.validateForecastPension(person));
 
             System.out.println(sbPerson);
         }

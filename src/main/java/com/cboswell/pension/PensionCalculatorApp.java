@@ -45,14 +45,13 @@ public class PensionCalculatorApp {
         LocalDate dob = LocalDate.of(1940, Month.JANUARY, 1);
         int niNumberDigits = 100000;
 
-        int totalPersons = total;
-        int partitionSize = totalPersons / threads;
+        int partitionSize = total / threads;
         // List to hold future tasks
         List<Future<List<Person>>> futures = new ArrayList<>();
 
         // Submit tasks to the executor service
         for (int threadIndex = 0; threadIndex < threads; threadIndex++) {
-            final LocalDate startDob = dob.plusWeeks(threadIndex * partitionSize);
+            final LocalDate startDob = dob.plusWeeks((long) threadIndex * partitionSize);
             final int startNiNumber = niNumberDigits + threadIndex * partitionSize;
             final int startIndex = threadIndex * partitionSize;
 

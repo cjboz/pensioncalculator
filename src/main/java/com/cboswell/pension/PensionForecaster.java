@@ -5,7 +5,7 @@ package com.cboswell.pension;
  */
 public interface PensionForecaster {
 
-    public static final int DEFAULT_MAXIMUM_RETIREMENT_AGE = 90;
+    int DEFAULT_MAXIMUM_RETIREMENT_AGE = 90;
 
     double forecastPension(final Person person);
 

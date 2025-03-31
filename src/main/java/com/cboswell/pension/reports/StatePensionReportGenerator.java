@@ -25,9 +25,7 @@ public class StatePensionReportGenerator implements PensionReportGenerator {
         int partiallyEligible = 0;
         int notEligible = 0;
         long invalid = personList.stream().filter(p -> !p.isValid()).count();
-        StringBuilder sbHeader = new StringBuilder("Generating State Pension Report for " + total + " subjects...\n");
-        sbHeader.append("Immediately discounting " + invalid + " invalid subjects");
-        logger.info(sbHeader.toString());
+        logger.info("Generating State Pension Report for " + total + " subjects...\n" + "Immediately discounting " + invalid + " invalid subjects");
 
         for (Person person : personList) {
             StringBuilder sbPerson = new StringBuilder("\n");

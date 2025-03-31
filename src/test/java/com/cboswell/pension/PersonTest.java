@@ -183,7 +183,7 @@ public class PersonTest {
     @Test
     public void testGetAgeForTenthBirthday() {
         Person spyPerson = spy(new Person(new Person.PersonBuilder()));
-        when(spyPerson.getDob()).thenReturn(LocalDate.now().minus(10, ChronoUnit.YEARS));
+        when(spyPerson.getDob()).thenReturn(LocalDate.now().minusYears(10));
 
         Assertions.assertEquals(10, spyPerson.getAge());
     }
@@ -191,7 +191,7 @@ public class PersonTest {
     @Test
     public void testGetAgeForFutureDateOfBirth() {
         Person spyPerson = spy(new Person(new Person.PersonBuilder()));
-        LocalDate tomorrow = LocalDate.now().plus(1, ChronoUnit.DAYS);
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
         when(spyPerson.getDob()).thenReturn(tomorrow);
 
         Assertions.assertThrows(IllegalArgumentException.class, spyPerson::getAge);
