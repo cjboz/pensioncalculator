@@ -48,12 +48,11 @@ public class StatePensionReportGenerator implements PensionReportGenerator {
             System.out.println(sbPerson);
         }
 
-        StringBuilder sbSummary = new StringBuilder("\n\n************* Summary *************");
-        sbSummary.append("\nTotal subjects: " + total);
-        sbSummary.append("\nInvalid subjects: " + invalid);
-        sbSummary.append("\nNumber fully eligible: " + fullyEligible);
-        sbSummary.append("\nNumber partially eligible: " + partiallyEligible);
-        sbSummary.append("\nNumber not eligible: " + notEligible);
-        System.out.println(sbSummary);
+        String summary = "\n\n************* Summary *************\nTotal subjects: " + total +
+                "\nInvalid subjects: " + invalid +
+                "\nNumber fully eligible: " + fullyEligible +
+                "\nNumber partially eligible: " + partiallyEligible +
+                "\nNumber not eligible: " + notEligible;
+        System.out.println(summary);
     }
 }
